@@ -10,12 +10,16 @@ import br.com.alura.entidade.AgendamentoEmail;
 
 @Stateless
 public class AgendamentoEmailDAO {
-
+	
 	@PersistenceContext
-	EntityManager entityManager;
-
+	private EntityManager entityManager;
+	
 	public List<AgendamentoEmail> listar() {
-		return entityManager.createQuery("SELECT ae FROM AgendamentoEmail ae", AgendamentoEmail.class).getResultList();
+		return entityManager.createQuery("SELECT ae FROM AgendamentoEmail ae",
+				AgendamentoEmail.class).getResultList();
 	}
 
+	public void inserir(AgendamentoEmail agendamentoEmail) {
+		entityManager.persist(agendamentoEmail);
+	}
 }
